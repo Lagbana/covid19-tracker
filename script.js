@@ -1,4 +1,3 @@
-
 // Put the graph details into a function ----> Dustin's Task
 let ctx = document.getElementById('myChart').getContext('2d');
 let chart = new Chart(ctx, {
@@ -13,12 +12,14 @@ let chart = new Chart(ctx, {
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
             data: []
+
         }]
     },
 
     // Configuration options go here
     options: {}
 });
+
 
 
 // Covid data object
@@ -65,11 +66,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await getData(queryURL)
     covidData = populate(data)
     console.log(covidData)
-
-
 })
 
 
-
-let chinaButton = document.getElementById("china")
-let chinaData = document.getElementById("china-data")
