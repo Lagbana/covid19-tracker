@@ -1,7 +1,9 @@
+
+// Put the graph details into a function ----> Dustin's Task
 let ctx = document.getElementById('myChart').getContext('2d');
 let chart = new Chart(ctx, {
     // The type of chart we want to create
-    type: 'line',
+    type: 'bar',
 
     // The data for our dataset
     data: {
@@ -10,7 +12,7 @@ let chart = new Chart(ctx, {
             label: 'COVID-19',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45]
+            data: []
         }]
     },
 
@@ -18,43 +20,56 @@ let chart = new Chart(ctx, {
     options: {}
 });
 
+
+// Covid data object
+let covidData = {
+    countries:[],
+    cases:[],
+    todayCases:[],
+    deaths:[],
+    todayDeaths:[],
+    recovered:[],
+    active:[],
+    critical:[],
+    casesPerOneMillion:[]
+}
+
+// covid-19 API URL
 let queryURL = 'https://corona.lmao.ninja/countries?sort=%5Bproperty%5D'
 
-function callAPI() {
-    fetch(queryURL)
-        .then(function(response) {
-            console.log(response)
-            return response.json()
-        })
-        .then(function(coronaCases) {
-            console.log(coronaCases)
-            let china = coronaCases[1].country
-            let chinaCases = coronaCases[1].cases
-            let chinaTodayCases = coronaCases[1].todayCases
-            let chinaDeaths = coronaCases[1].deaths
-            let chinaTodayDeaths = coronaCases[1].todayDeaths
-            let chinaRecovered = coronaCases[1].recovered
-            let chinaCritical = coronaCases[1].critical
-
-            let chinaCasesElement = document.getElementById("china-cases")
-            let chinaTodayCasesElement = document.getElementById("china-today-cases")
-            let chinaDeathsElement = document.getElementById("china-deaths")
-            let chinaTodayDeathsElement = document.getElementById("china-today-deaths")
-            let chinaRecoveredElement = document.getElementById("china-recoverd")
-            let chinaCriticalElement = document.getElementById("china-critical")
-
-            chinaCasesElement.textContent = "Cases: " + chinaCases
-            chinaTodayCasesElement.textContent = "Cases Today: " + chinaTodayCases
-            chinaDeathsElement.textContent = "Deaths: " + chinaDeaths
-            chinaTodayDeathsElement.textContent = "Deaths Today: " + chinaTodayDeaths
-            chinaRecoveredElement.textContent = "Recovered: " + chinaRecovered
-            chinaCriticalElement.textContent = "Critical: " + chinaCritical
-        })
+// Re-Usable function to get any API data
+const getData = async (url) => {
+    const result = await fetch(url).then(response => response.json())
+    return result
 }
+
+// Function to get all our necessary data
+const populate = (coronaCases) => {
+    for (let index of coronaCases){
+        covidData.countries.push(index.country) //-------------------> List of Countries
+        covidData.cases.push(index.cases) //-------------------> List of Cases
+        covidData.todayCases.push(index.todayCases) //-------------------> List of Today's Cases
+        covidData.deaths.push(index.deaths) //-------------------> List of Total Deaths
+        covidData.todayDeaths.push(index.todayDeaths) //-------------------> List of Today's Deaths
+        covidData.active.push(index.active) //----------------------> List of Active (need more context for "Active")
+        covidData.recovered.push(index.recovered) //-------------------> List of Recovered
+        covidData.critical.push(index.critical) //-------------------> List of Critical
+        covidData.casesPerOneMillion.push(index.casesPerOneMillion) //------------------> List of cases per one million (used for comparison
+    }
+    return covidData
+}
+
+// Call ALL functions inside this on Page Load
+document.addEventListener('DOMContentLoaded', async () => {
+
+    const data = await getData(queryURL)
+    covidData = populate(data)
+    console.log(covidData)
+
+
+})
+
+
 
 let chinaButton = document.getElementById("china")
 let chinaData = document.getElementById("china-data")
-
-chinaButton.addEventListener("click", function() {
-    callAPI()
-})
