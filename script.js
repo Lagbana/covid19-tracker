@@ -54,14 +54,30 @@ let countriesSelector = document.getElementById('countries')
 // Append all the countries into the select tag
 
 function createDropdown() {
-    let countryList = covidData.countries
-    for (let country of countryList) {
+    let sortedCountryList = covidData.countries.slice().sort()
+    for (let country of sortedCountryList) {
         let newCountry = document.createElement('option')
         newCountry.setAttribute("value", country)
         newCountry.textContent = country
         countriesSelector.appendChild(newCountry)
     }
 }
+
+//Search bar to search through dropdown of countries
+
+function filter() {
+    let keyword = document.getElementById("search").value;
+    let select = document.getElementById("countries");
+    for (var i = 0; i < select.length; i++) {
+        var txt = select.options[i].text;
+        if (txt.substring(0, keyword.length).toLowerCase() !== keyword.toLowerCase() && keyword.trim() !== "") {
+            select.options[i].style.display = 'none';
+        } else {
+            select.options[i].style.display = 'list-item';
+        }
+    }
+}
+
 
 // Add an event listener based on what country the user chooses
 // The CreateBarGraph function is called with the country index the user chose
@@ -161,20 +177,20 @@ function createBarGraph(countryIndex) {
 
             scales: {
                 xAxes: [{
-                   gridLines: {
-                      display: true
-                   },
-                   scaleLabel: {
-                    display: true,
-                    labelString: 'Number of People'
-                  }
+                    gridLines: {
+                        display: true
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Number of People'
+                    }
                 }],
                 yAxes: [{
-                   gridLines: {
-                      display: false
-                   }
+                    gridLines: {
+                        display: false
+                    }
                 }]
-             }
+            }
 
         }
     });
