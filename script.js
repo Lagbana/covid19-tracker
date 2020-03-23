@@ -75,6 +75,7 @@ function worldwideDataCollector() {
     for (let cases of covidData.cases) {
         worldwideData.cases += cases
     }
+    
     covidData.cases.unshift(worldwideData.cases)
 
     for (let todayCases of covidData.todayCases) {
@@ -109,8 +110,6 @@ function worldwideDataCollector() {
 
     worldwideData.casesPerOneMillion = Number(((worldwideData.cases / 7713468000) * 1000000).toFixed(0))
     covidData.casesPerOneMillion.unshift(worldwideData.casesPerOneMillion)
-    console.log(worldwideData)
-    console.log(covidData)
 }
 
 let countriesSelector = document.getElementById('countries')
@@ -160,28 +159,28 @@ function displayTextData(countryName, countryIndex) {
     country.innerHTML = "Country: " + "<span class='view-data'>" + countryName + "</span>"
 
     let cases = document.getElementById('cases')
-    cases.innerHTML = "Total Cases: " + "<span class='view-data'>" + covidData.cases[countryIndex] + "</span>"
+    cases.innerHTML = "Total Cases: " + "<span class='view-data'>" + covidData.cases[countryIndex].toLocaleString() + "</span>"
 
     let casesToday = document.getElementById('today-cases')
-    casesToday.innerHTML = "Cases Today: " + "<span class='view-data'>" + covidData.todayCases[countryIndex] + "</span>"
+    casesToday.innerHTML =  "Cases Today: " + "<span class='view-data'>" + "+ "  + covidData.todayCases[countryIndex].toLocaleString() + "</span>"
 
     let deaths = document.getElementById('deaths')
-    deaths.innerHTML = "Total Deceased: " + "<span class='negative-data'>" + covidData.deaths[countryIndex] + "</span>"
+    deaths.innerHTML = "Total Deceased: " + "<span class='negative-data'>" + covidData.deaths[countryIndex].toLocaleString() + "</span>"
 
     let deathsToday = document.getElementById('today-deaths')
-    deathsToday.innerHTML = "Deceased Today: " + "<span class='negative-data'>" + covidData.todayDeaths[countryIndex] + "</span>"
+    deathsToday.innerHTML = "Deceased Today: " + "<span class='negative-data'>" + "+ " + covidData.todayDeaths[countryIndex].toLocaleString() + "</span>"
 
     let recovered = document.getElementById('recovered')
-    recovered.innerHTML = "Recovered: " + "<span class='view-data'>" + covidData.recovered[countryIndex] + "</span>"
+    recovered.innerHTML = "Recovered: " + "<span class='positive-data'>" + covidData.recovered[countryIndex].toLocaleString() + "</span>"
 
     let active = document.getElementById('active')
-    active.innerHTML = "Active Cases: " + "<span class='view-data'>" + covidData.active[countryIndex] + "</span>"
+    active.innerHTML = "Active Cases: " + "<span class='view-data'>" + covidData.active[countryIndex].toLocaleString() + "</span>"
 
     let critical = document.getElementById('critical')
-    critical.innerHTML = "Critical: " + "<span class='view-data'>" + covidData.critical[countryIndex] + "</span>"
+    critical.innerHTML = "Critical: " + "<span class='view-data'>" + covidData.critical[countryIndex].toLocaleString() + "</span>"
 
     let casesPerOneMillion = document.getElementById('cases-per-million')
-    casesPerOneMillion.innerHTML = "Cases per one Million: " + "<span class='view-data'>" + covidData.casesPerOneMillion[countryIndex] + "</span>"
+    casesPerOneMillion.innerHTML = "Cases per Million: " + "<span class='view-data'>" + covidData.casesPerOneMillion[countryIndex].toLocaleString() + "</span>"
 }
 
 
@@ -219,7 +218,7 @@ function createBarGraph(countryIndex) {
         options: {
             title: {
                 display: true,
-                text: 'Covid-19 Statistics for: ' + selectedCountry,
+                text: 'Covid-19 Data Chart for: ' + selectedCountry,
                 fontSize: 16
             },
 
