@@ -111,25 +111,25 @@ function displayTextData(countryName, countryIndex) {
     cases.innerHTML = "Total Cases: " + "<span class='view-data'>" + covidData.cases[countryIndex] + "</span>"
 
     let casesToday = document.getElementById('today-cases')
-    casesToday.innerHTML = "Cases Today: " + "<span class='view-data'>" + covidData.todayCases[countryIndex] + "</span>"
+    casesToday.innerHTML = "Cases Today: " + "<span class='view-data'>" + "+ "  + covidData.todayCases[countryIndex] + "</span>"
 
     let deaths = document.getElementById('deaths')
     deaths.innerHTML = "Total Deceased: " + "<span class='negative-data'>" + covidData.deaths[countryIndex] + "</span>"
 
     let deathsToday = document.getElementById('today-deaths')
-    deathsToday.innerHTML = "Deceased Today: " + "<span class='negative-data'>" + covidData.todayDeaths[countryIndex] + "</span>"
+    deathsToday.innerHTML = "Deceased Today: " + "<span class='negative-data'>" + "+ " + covidData.todayDeaths[countryIndex] + "</span>"
 
     let recovered = document.getElementById('recovered')
-    recovered.innerHTML = "Recovered: " + "<span class='view-data'>" + covidData.recovered[countryIndex] + "</span>"
+    recovered.innerHTML = "Total Recovered: " + "<span class='positive-data'>" + covidData.recovered[countryIndex] + "</span>"
 
     let active = document.getElementById('active')
     active.innerHTML = "Active Cases: " + "<span class='view-data'>" + covidData.active[countryIndex] + "</span>"
 
     let critical = document.getElementById('critical')
-    critical.innerHTML = "Critical: " + "<span class='view-data'>" + covidData.critical[countryIndex] + "</span>"
+    critical.innerHTML = "Critical Active Cases: " + "<span class='view-data'>" + covidData.critical[countryIndex] + "</span>"
 
     let casesPerOneMillion = document.getElementById('cases-per-million')
-    casesPerOneMillion.innerHTML = "Cases per one Million: " + "<span class='view-data'>" + covidData.casesPerOneMillion[countryIndex] + "</span>"
+    casesPerOneMillion.innerHTML = "Cases per Million: " + "<span class='view-data'>" + covidData.casesPerOneMillion[countryIndex] + "</span>"
 }
 
 
@@ -153,7 +153,7 @@ function createBarGraph(countryIndex) {
 
         // The data for our dataset
         data: {
-            labels: ['Cases', 'Recovered', 'Active', 'Critical', 'Cases per million', 'Cases Today', 'Deceased', 'Deceased Today'],
+            labels: ['Total Cases', ' Total Recovered', 'Active Cases', 'Critical Active Cases', 'Cases per million', 'Cases Today', ' Total Deceased', 'Deceased Today'],
             datasets: [{
                 // label: 'Number of People',
                 backgroundColor: 'rgb(255, 99, 132)',
@@ -167,7 +167,7 @@ function createBarGraph(countryIndex) {
         options: {
             title: {
                 display: true,
-                text: 'Covid-19 Statistics for: ' + selectedCountry,
+                text: 'Covid-19 Data Chart for: ' + selectedCountry,
                 fontSize: 16
             },
 
