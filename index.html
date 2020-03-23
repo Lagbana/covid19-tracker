@@ -4,36 +4,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COVID-19 Update</title>
+    <title>COVID-19 Tracker</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
-    <h1>Team Get Sh*t Done</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam distinctio corporis nam sequi quia, voluptas odit veritatis quibusdam laboriosam id libero accusantium commodi recusandae est sit atque magnam. Eum, veniam.</p>
+    <header>
+        <div class="app-header">
+            <h1 class="center-align">COVID-19 Tracker</h1>
+        </div>
+    </header>
 
-    <!-- List of Countries Selector -->
-    <select id="countries" class="browser-default">
-      <option value="" disabled selected>Choose a Country</option>
-    </select>
+    <main class='row container'>
+        <section class='col s12 m8 l9 section'>
+            <div>
 
-    <!-- Country Data -->
-    <div id="country-data">
-        <p id="country"></p>
-        <p id="cases"></p>
-        <p id="today-cases"></p>
-        <p id="deaths"></p>
-        <p id="today-deaths"></p>
-        <p id="recovered"></p>
-        <p id="active"></p>
-        <p id="critical"></p>
-        <p id="cases-per-million"></p>
-    </div>
+                <div class="row">
 
-    <!-- Bar Graph -->
-    <canvas class="col" id="myChart"></canvas>
+                    <div class="card col s10 statistics">
+                        <div class=" black-text">
+                            <h5 class='stats-header'> Current Data</h5>
+                        </div>
+                        <div class="card-content white-text">
+                            <!-- List of Countries Selector -->
+                            <select id="countries" class="browser-default">
+                                <option value="" disabled selected>Choose a Country</option>
+                            </select>
+                        </div>
+                        <div class='card-action center-align'>
+                            <!-- Country Data -->
+                            <div id="country-data"></div>
+                            <div class="row">
+                                <div class="col s4 indent" id='country'></div>
+                                <div class="col s4 indent" id='cases'></div>
+                                <div class="col s4 indent" id='cases-per-million'></div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4 indent" id='deaths'></div>
+                                <div class="col s4 indent" id='today-cases'></div>
+                                <div class="col s4 indent" id='active'></div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col s4 indent" id='today-deaths'></div>
+                                <div class="col s4 indent" id='recovered'></div>
+                                <div class="col s4 indent" id='critical'></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            </div>
+            <!-- <div class="divider valign-wrapper"></div> -->
+
+            <div class='row'>
+                <div class="card chart-card col s10">
+                     <!-- All Graph -->
+                    <canvas class="col s12 chart" id="myChart"></canvas>
+                </div>
+            </div>
+        </section>
+        <section class='col s12 m4 l3 light-blue lighten-1 white-text'>
+            <h3>Twitter</h3>
+            <p>
+                <h6>Tweet 1: WHO</h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, ab? Officia, dolorum.
+                Dolorum nostrum sunt atque dolore at nihil tenetur fugit delectus libero error nemo, modi sapiente, ab
+                pariatur laboriosam.
+            </p><br>
+            <p>
+                <h6>Tweet 2: Health Canada</h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, ab?
+                Officia, dolorum. Dolorum nostrum sunt atque dolore at nihil tenetur fugit delectus libero error nemo,
+                modi sapiente, ab pariatur laboriosam.
+            </p><br>
+            <p>
+                <h6>Tweet 3: Ontario Health</h6>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, ab?
+                Officia, dolorum. Dolorum nostrum sunt atque dolore at nihil tenetur fugit delectus libero error nemo,
+                modi sapiente, ab pariatur laboriosam.
+            </p>
+        </section>
+
+    </main>
+
 
 
 
