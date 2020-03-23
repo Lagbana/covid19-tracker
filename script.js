@@ -89,38 +89,38 @@ function chooseCountry() {
 
 function displayTextData(countryName, countryIndex) {
     let country = document.getElementById('country')
-    country.textContent = countryName
+    country.innerHTML = "Country: " + "<span class='view-data'>" + countryName + "</span>"
 
     let cases = document.getElementById('cases')
-    cases.textContent = 'Total Cases : ' + covidData.cases[countryIndex]
+    cases.innerHTML = "Total Cases: " + "<span class='view-data'>" + covidData.cases[countryIndex] + "</span>"
 
     let casesToday = document.getElementById('today-cases')
-    casesToday.textContent = 'Cases Today : ' + covidData.todayCases[countryIndex]
+    casesToday.innerHTML = "Cases Today: " + "<span class='view-data'>" + covidData.todayCases[countryIndex] + "</span>"
 
     let deaths = document.getElementById('deaths')
-    deaths.textContent = 'Total Deaths : ' + covidData.deaths[countryIndex]
+    deaths.innerHTML = "Total Deceased: " + "<span class='negative-data'>" + covidData.deaths[countryIndex] + "</span>"
 
     let deathsToday = document.getElementById('today-deaths')
-    deathsToday.textContent = 'Deaths Today : ' + covidData.todayDeaths[countryIndex]
+    deathsToday.innerHTML = "Deceased Today: " + "<span class='negative-data'>" + covidData.todayDeaths[countryIndex] + "</span>"
 
     let recovered = document.getElementById('recovered')
-    recovered.textContent = 'Recovered : ' + covidData.recovered[countryIndex]
+    recovered.innerHTML = "Recovered: " + "<span class='view-data'>" + covidData.recovered[countryIndex] + "</span>"
 
     let active = document.getElementById('active')
-    active.textContent = 'Active cases : ' + covidData.active[countryIndex]
+    active.innerHTML = "Active Cases: " + "<span class='view-data'>" + covidData.active[countryIndex] + "</span>"
 
     let critical = document.getElementById('critical')
-    critical.textContent = 'Critical : ' + covidData.critical[countryIndex]
+    critical.innerHTML = "Critical: " + "<span class='view-data'>" + covidData.critical[countryIndex] + "</span>"
 
     let casesPerOneMillion = document.getElementById('cases-per-million')
-    casesPerOneMillion.textContent = 'Cases per one Million : ' + covidData.casesPerOneMillion[countryIndex]
+    casesPerOneMillion.innerHTML = "Cases per one Million: " + "<span class='view-data'>" + covidData.casesPerOneMillion[countryIndex] + "</span>"
 }
 
 
 // From the object covid19, the different properties are retrieved
 // The bar graph is updated with that countries' data
 function createBarGraph(countryIndex) {
-    console.log(covidData)
+    let selectedCountry = covidData.countries[countryIndex]
     let casesChart = covidData.cases[countryIndex]
     let casesTodayChart = covidData.todayCases[countryIndex]
     let deathsChart = covidData.deaths[countryIndex]
@@ -133,21 +133,49 @@ function createBarGraph(countryIndex) {
     let ctx = document.getElementById('myChart').getContext('2d');
     let chart = new Chart(ctx, {
         // The type of chart we want to create
-        type: 'bar',
+        type: 'horizontalBar',
 
         // The data for our dataset
         data: {
-            labels: ['Cases', 'Cases Today', 'Deaths', 'Deaths Today', 'Recovered', 'Active', 'Critical', 'Cases per million'],
+            labels: ['Cases', 'Recovered', 'Active', 'Critical', 'Cases per million', 'Cases Today', 'Deceased', 'Deceased Today'],
             datasets: [{
-                label: 'Number of People',
+                // label: 'Number of People',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [casesChart, casesTodayChart, deathsChart, deathsTodayChart, recoveredChart, activeChart, criticalChart, casesPerOneMillionChart]
+                data: [casesChart, recoveredChart, activeChart, criticalChart, casesPerOneMillionChart, casesTodayChart, deathsChart, deathsTodayChart]
 
             }]
         },
 
         // Configuration options go here
-        // options: {}
+        options: {
+            title: {
+                display: true,
+                text: 'Covid-19 Statistics for: ' + selectedCountry,
+                fontSize: 16
+            },
+
+            legend: {
+                display: false,
+            },
+
+            scales: {
+                xAxes: [{
+                   gridLines: {
+                      display: true
+                   },
+                   scaleLabel: {
+                    display: true,
+                    labelString: 'Number of People'
+                  }
+                }],
+                yAxes: [{
+                   gridLines: {
+                      display: false
+                   }
+                }]
+             }
+
+        }
     });
 }
