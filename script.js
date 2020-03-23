@@ -54,14 +54,30 @@ let countriesSelector = document.getElementById('countries')
 // Append all the countries into the select tag
 
 function createDropdown() {
-    let countryList = covidData.countries
-    for (let country of countryList) {
+    let sortedCountryList = covidData.countries.slice().sort()
+    for (let country of sortedCountryList) {
         let newCountry = document.createElement('option')
         newCountry.setAttribute("value", country)
         newCountry.textContent = country
         countriesSelector.appendChild(newCountry)
     }
 }
+
+//Search bar to search through dropdown of countries
+
+function filter() {
+    let keyword = document.getElementById("search").value;
+    let select = document.getElementById("countries");
+    for (var i = 0; i < select.length; i++) {
+        var txt = select.options[i].text;
+        if (txt.substring(0, keyword.length).toLowerCase() !== keyword.toLowerCase() && keyword.trim() !== "") {
+            select.options[i].style.display = 'none';
+        } else {
+            select.options[i].style.display = 'list-item';
+        }
+    }
+}
+
 
 // Add an event listener based on what country the user chooses
 // The CreateBarGraph function is called with the country index the user chose
@@ -95,25 +111,25 @@ function displayTextData(countryName, countryIndex) {
     cases.innerHTML = "Total Cases: " + "<span class='view-data'>" + covidData.cases[countryIndex] + "</span>"
 
     let casesToday = document.getElementById('today-cases')
-    casesToday.innerHTML = "Cases Today: " + "<span class='view-data'>" + covidData.todayCases[countryIndex] + "</span>"
+    casesToday.innerHTML = "Cases Today: " + "<span class='view-data'>" + "+ "  + covidData.todayCases[countryIndex] + "</span>"
 
     let deaths = document.getElementById('deaths')
     deaths.innerHTML = "Total Deceased: " + "<span class='negative-data'>" + covidData.deaths[countryIndex] + "</span>"
 
     let deathsToday = document.getElementById('today-deaths')
-    deathsToday.innerHTML = "Deceased Today: " + "<span class='negative-data'>" + covidData.todayDeaths[countryIndex] + "</span>"
+    deathsToday.innerHTML = "Deceased Today: " + "<span class='negative-data'>" + "+ " + covidData.todayDeaths[countryIndex] + "</span>"
 
     let recovered = document.getElementById('recovered')
-    recovered.innerHTML = "Recovered: " + "<span class='view-data'>" + covidData.recovered[countryIndex] + "</span>"
+    recovered.innerHTML = "Total Recovered: " + "<span class='positive-data'>" + covidData.recovered[countryIndex] + "</span>"
 
     let active = document.getElementById('active')
     active.innerHTML = "Active Cases: " + "<span class='view-data'>" + covidData.active[countryIndex] + "</span>"
 
     let critical = document.getElementById('critical')
-    critical.innerHTML = "Critical: " + "<span class='view-data'>" + covidData.critical[countryIndex] + "</span>"
+    critical.innerHTML = "Critical Active Cases: " + "<span class='view-data'>" + covidData.critical[countryIndex] + "</span>"
 
     let casesPerOneMillion = document.getElementById('cases-per-million')
-    casesPerOneMillion.innerHTML = "Cases per one Million: " + "<span class='view-data'>" + covidData.casesPerOneMillion[countryIndex] + "</span>"
+    casesPerOneMillion.innerHTML = "Cases per Million: " + "<span class='view-data'>" + covidData.casesPerOneMillion[countryIndex] + "</span>"
 }
 
 
@@ -137,7 +153,7 @@ function createBarGraph(countryIndex) {
 
         // The data for our dataset
         data: {
-            labels: ['Cases', 'Recovered', 'Active', 'Critical', 'Cases per million', 'Cases Today', 'Deceased', 'Deceased Today'],
+            labels: ['Total Cases', ' Total Recovered', 'Active Cases', 'Critical Active Cases', 'Cases per million', 'Cases Today', ' Total Deceased', 'Deceased Today'],
             datasets: [{
                 // label: 'Number of People',
                 backgroundColor: 'rgb(255, 99, 132)',
@@ -151,7 +167,7 @@ function createBarGraph(countryIndex) {
         options: {
             title: {
                 display: true,
-                text: 'Covid-19 Statistics for: ' + selectedCountry,
+                text: 'Covid-19 Data Chart for: ' + selectedCountry,
                 fontSize: 16
             },
 
@@ -161,20 +177,20 @@ function createBarGraph(countryIndex) {
 
             scales: {
                 xAxes: [{
-                   gridLines: {
-                      display: true
-                   },
-                   scaleLabel: {
-                    display: true,
-                    labelString: 'Number of People'
-                  }
+                    gridLines: {
+                        display: true
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Number of People'
+                    }
                 }],
                 yAxes: [{
-                   gridLines: {
-                      display: false
-                   }
+                    gridLines: {
+                        display: false
+                    }
                 }]
-             }
+            }
 
         }
     });

@@ -46,6 +46,11 @@ h1 {
     font-weight: bold;
 }
 
+.positive-data {
+    color: 	#00cd00;
+    font-weight: bold;
+}
+
 .indent {
     text-indent: -1rem;
     padding: 0rem !important;
