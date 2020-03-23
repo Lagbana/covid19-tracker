@@ -41,29 +41,81 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     const data = await getData(queryURL)
     covidData = populate(data)
+
+    // Call the create Dropdown Function
+    createDropdown()
+
+    // Call the event listener function
+    chooseCountry()
 })
-
-// Put the graph details into a function ----> Dustin's Task
-
 
 let countriesSelector = document.getElementById('countries')
 
-let countryIndex;
+// Append all the countries into the select tag
 
-
-// Add an event listener based on what country the user clicks on
-// The CreateBarGraph function is called that correspponds to the country index the user chose
-countriesSelector.addEventListener("click", function() {
-    let countryName = event.target.getAttribute("value")
-    let countries = covidData.countries
-    for (let i = 0; i < countries.length; i++) {
-        let country = countries[i]
-        if (country === countryName) {
-            countryIndex = i
-        }
+function createDropdown() {
+    let countryList = covidData.countries
+    for (let country of countryList) {
+        let newCountry = document.createElement('option')
+        newCountry.setAttribute("value", country)
+        newCountry.textContent = country
+        countriesSelector.appendChild(newCountry)
     }
-    createBarGraph(countryIndex)
-})
+}
+
+// Add an event listener based on what country the user chooses
+// The CreateBarGraph function is called with the country index the user chose
+// The displayTextData function is called with the country name and its index
+
+function chooseCountry() {
+    let countryIndex;
+    let countryName;
+    countriesSelector.addEventListener("change", function() {
+        countryName = this.value
+        let countries = covidData.countries
+        for (let i = 0; i < countries.length; i++) {
+            let country = countries[i]
+            if (country === countryName) {
+                countryIndex = i
+            }
+        }
+        createBarGraph(countryIndex)
+        displayTextData(countryName, countryIndex)
+    })
+
+}
+
+// This Function Updates the text on the page with COVID-19 data for a specified country
+
+function displayTextData(countryName, countryIndex) {
+    let country = document.getElementById('country')
+    country.textContent = countryName
+
+    let cases = document.getElementById('cases')
+    cases.textContent = 'Total Cases : ' + covidData.cases[countryIndex]
+
+    let casesToday = document.getElementById('today-cases')
+    casesToday.textContent = 'Cases Today : ' + covidData.todayCases[countryIndex]
+
+    let deaths = document.getElementById('deaths')
+    deaths.textContent = 'Total Deaths : ' + covidData.deaths[countryIndex]
+
+    let deathsToday = document.getElementById('today-deaths')
+    deathsToday.textContent = 'Deaths Today : ' + covidData.todayDeaths[countryIndex]
+
+    let recovered = document.getElementById('recovered')
+    recovered.textContent = 'Recovered : ' + covidData.recovered[countryIndex]
+
+    let active = document.getElementById('active')
+    active.textContent = 'Active cases : ' + covidData.active[countryIndex]
+
+    let critical = document.getElementById('critical')
+    critical.textContent = 'Critical : ' + covidData.critical[countryIndex]
+
+    let casesPerOneMillion = document.getElementById('cases-per-million')
+    casesPerOneMillion.textContent = 'Cases per one Million : ' + covidData.casesPerOneMillion[countryIndex]
+}
+
 
 // From the object covid19, the different properties are retrieved
 // The bar graph is updated with that countries' data
@@ -87,7 +139,7 @@ function createBarGraph(countryIndex) {
         data: {
             labels: ['Cases', 'Cases Today', 'Deaths', 'Deaths Today', 'Recovered', 'Active', 'Critical', 'Cases per million'],
             datasets: [{
-                label: 'COVID-19',
+                label: 'Number of People',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
                 data: [casesChart, casesTodayChart, deathsChart, deathsTodayChart, recoveredChart, activeChart, criticalChart, casesPerOneMillionChart]
@@ -96,6 +148,6 @@ function createBarGraph(countryIndex) {
         },
 
         // Configuration options go here
-        options: {}
+        // options: {}
     });
 }
