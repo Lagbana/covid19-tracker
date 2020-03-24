@@ -171,13 +171,13 @@ function displayTextData(countryName, countryIndex) {
     deathsToday.innerHTML = "Deceased Today: " + "<span class='negative-data'>" + "+ " + covidData.todayDeaths[countryIndex].toLocaleString() + "</span>"
 
     let recovered = document.getElementById('recovered')
-    recovered.innerHTML = "Recovered: " + "<span class='positive-data'>" + covidData.recovered[countryIndex].toLocaleString() + "</span>"
+    recovered.innerHTML = "Total Recovered: " + "<span class='positive-data'>" + covidData.recovered[countryIndex].toLocaleString() + "</span>"
 
     let active = document.getElementById('active')
     active.innerHTML = "Active Cases: " + "<span class='view-data'>" + covidData.active[countryIndex].toLocaleString() + "</span>"
 
     let critical = document.getElementById('critical')
-    critical.innerHTML = "Critical: " + "<span class='view-data'>" + covidData.critical[countryIndex].toLocaleString() + "</span>"
+    critical.innerHTML = "Critical Active Cases: " + "<span class='view-data'>" + covidData.critical[countryIndex].toLocaleString() + "</span>"
 
     let casesPerOneMillion = document.getElementById('cases-per-million')
     casesPerOneMillion.innerHTML = "Cases per Million: " + "<span class='view-data'>" + covidData.casesPerOneMillion[countryIndex].toLocaleString() + "</span>"

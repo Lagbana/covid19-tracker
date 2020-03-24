@@ -19,7 +19,7 @@ https://lagbana.github.io/covid19-tracker/
 #### Twitter API
 - https://developer.twitter.com/en/docs 
 
-#### Contributors
+## Contributors
 - Larry: https://github.com/Lagbana
 - Dustin: https://github.com/dustinirving
 - Kacey: https://github.com/K4c3y
