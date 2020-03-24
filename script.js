@@ -75,7 +75,7 @@ function worldwideDataCollector() {
     for (let cases of covidData.cases) {
         worldwideData.cases += cases
     }
-    
+
     covidData.cases.unshift(worldwideData.cases)
 
     for (let todayCases of covidData.todayCases) {
@@ -146,6 +146,9 @@ function chooseCountry() {
                 countryIndex = i
             }
         }
+        if (chart) {
+            chart.destroy()
+        }
         createBarGraph(countryIndex)
         displayTextData(countryName, countryIndex)
     })
@@ -162,7 +165,7 @@ function displayTextData(countryName, countryIndex) {
     cases.innerHTML = "Total Cases: " + "<span class='view-data'>" + covidData.cases[countryIndex].toLocaleString() + "</span>"
 
     let casesToday = document.getElementById('today-cases')
-    casesToday.innerHTML =  "Cases Today: " + "<span class='view-data'>" + "+ "  + covidData.todayCases[countryIndex].toLocaleString() + "</span>"
+    casesToday.innerHTML = "Cases Today: " + "<span class='view-data'>" + "+ " + covidData.todayCases[countryIndex].toLocaleString() + "</span>"
 
     let deaths = document.getElementById('deaths')
     deaths.innerHTML = "Total Deceased: " + "<span class='negative-data'>" + covidData.deaths[countryIndex].toLocaleString() + "</span>"
@@ -183,6 +186,9 @@ function displayTextData(countryName, countryIndex) {
     casesPerOneMillion.innerHTML = "Cases per Million: " + "<span class='view-data'>" + covidData.casesPerOneMillion[countryIndex].toLocaleString() + "</span>"
 }
 
+// Define chart outside function to make it global
+// This way the chart data is deleted when the user chooses a different country
+let chart;
 
 // From the object covid19, the different properties are retrieved
 // The bar graph is updated with that countries' data
@@ -198,7 +204,7 @@ function createBarGraph(countryIndex) {
     let casesPerOneMillionChart = covidData.casesPerOneMillion[countryIndex]
 
     let ctx = document.getElementById('myChart').getContext('2d');
-    let chart = new Chart(ctx, {
+    chart = new Chart(ctx, {
         // The type of chart we want to create
         type: 'horizontalBar',
 
