@@ -41,19 +41,22 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     const data = await getData(queryURL)
     covidData = populate(data)
-
-    //Call the worldwideDataCollector function
+        //Call the worldwideDataCollector function
     worldwideDataCollector()
 
     // Display worldwide data when the user opens the page
     createBarGraph(0)
     displayTextData('Worldwide', 0)
 
+
     // Call the create Dropdown Function
     createDropdown()
 
     // Call the event listener function
     chooseCountry()
+
+    // Call the compare countries event listener function
+    chooseCountriesCompare()
 })
 
 // Make a worldwide object with properties
@@ -112,21 +115,24 @@ function worldwideDataCollector() {
     covidData.casesPerOneMillion.unshift(worldwideData.casesPerOneMillion)
 }
 
-let countriesSelector = document.getElementById('countries')
 
-// Append all the countries into the select tag
+
+// Append all the countries into the select tag of all dropdowns
 
 function createDropdown() {
-    let worldwideOption = document.createElement('option')
-    worldwideOption.setAttribute("value", 'Worldwide')
-    worldwideOption.textContent = 'Worldwide'
-    countriesSelector.appendChild(worldwideOption)
-    let sortedCountryList = covidData.countries.slice().sort()
-    for (let country of sortedCountryList) {
-        let newCountry = document.createElement('option')
-        newCountry.setAttribute("value", country)
-        newCountry.textContent = country
-        countriesSelector.appendChild(newCountry)
+    let dropdowns = document.getElementsByClassName('dropdown')
+    for (let dropdown of dropdowns) {
+        let worldwideOption = document.createElement('option')
+        worldwideOption.setAttribute("value", 'Worldwide')
+        worldwideOption.textContent = 'Worldwide'
+        dropdown.appendChild(worldwideOption)
+        let sortedCountryList = covidData.countries.slice().sort()
+        for (let country of sortedCountryList) {
+            let newCountry = document.createElement('option')
+            newCountry.setAttribute("value", country)
+            newCountry.textContent = country
+            dropdown.appendChild(newCountry)
+        }
     }
 }
 
@@ -134,10 +140,13 @@ function createDropdown() {
 // The CreateBarGraph function is called with the country index the user chose
 // The displayTextData function is called with the country name and its index
 
+
+
 function chooseCountry() {
+    let firstDropdown = document.getElementById("countries")
     let countryIndex;
     let countryName;
-    countriesSelector.addEventListener("change", function() {
+    firstDropdown.addEventListener("change", function() {
         countryName = this.value
         let countries = covidData.countries
         for (let i = 0; i < countries.length; i++) {
@@ -149,10 +158,10 @@ function chooseCountry() {
         if (chart) {
             chart.destroy()
         }
+        console.log(countryName)
         createBarGraph(countryIndex)
         displayTextData(countryName, countryIndex)
     })
-
 }
 
 // This Function Updates the text on the page with COVID-19 data for a specified country
@@ -240,6 +249,155 @@ function createBarGraph(countryIndex) {
                     scaleLabel: {
                         display: true,
                         labelString: 'Number of People'
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display: false
+                    }
+                }]
+            }
+
+        }
+    });
+}
+
+
+function chooseCountriesCompare() {
+    let countryOne = document.getElementById("country-one")
+    let countryIndexOne;
+    let countryNameOne;
+    countryOne.addEventListener("change", function() {
+        countryNameOne = this.value
+        let countries = covidData.countries
+        for (let i = 0; i < countries.length; i++) {
+            let country = countries[i]
+            if (country === countryNameOne) {
+                countryIndexOne = i
+            }
+        }
+    })
+    let countryTwo = document.getElementById("country-two")
+    let countryIndexTwo;
+    let countryNameTwo;
+    countryTwo.addEventListener("change", function() {
+        countryNameTwo = this.value
+        let countries = covidData.countries
+        for (let i = 0; i < countries.length; i++) {
+            let country = countries[i]
+            if (country === countryNameTwo) {
+                countryIndexTwo = i
+            }
+        }
+    })
+    let compareButton = document.getElementById('compare-button')
+    compareButton.addEventListener("click", function() {
+        if (chart2) {
+            chart2.destroy()
+        }
+        createComparisonBarGraph(countryIndexOne, countryIndexTwo)
+    })
+}
+
+
+// This creates a comparative bar graph between two countries
+
+let chart2;
+
+function createComparisonBarGraph(countryIndexOne, countryIndexTwo) {
+    let selectedCountryOne = covidData.countries[countryIndexOne]
+    let casesChartOne = covidData.cases[countryIndexOne]
+    let casesTodayChartOne = covidData.todayCases[countryIndexOne]
+    let deathsChartOne = covidData.deaths[countryIndexOne]
+    let deathsTodayChartOne = covidData.todayDeaths[countryIndexOne]
+    let recoveredChartOne = covidData.recovered[countryIndexOne]
+    let activeChartOne = covidData.active[countryIndexOne]
+    let criticalChartOne = covidData.critical[countryIndexOne]
+    let casesPerOneMillionChartOne = covidData.casesPerOneMillion[countryIndexOne]
+
+
+    let selectedCountryTwo = covidData.countries[countryIndexTwo]
+    let casesChartTwo = covidData.cases[countryIndexTwo]
+    let casesTodayChartTwo = covidData.todayCases[countryIndexTwo]
+    let deathsChartTwo = covidData.deaths[countryIndexTwo]
+    let deathsTodayChartTwo = covidData.todayDeaths[countryIndexTwo]
+    let recoveredChartTwo = covidData.recovered[countryIndexTwo]
+    let activeChartTwo = covidData.active[countryIndexTwo]
+    let criticalChartTwo = covidData.critical[countryIndexTwo]
+    let casesPerOneMillionChartTwo = covidData.casesPerOneMillion[countryIndexTwo]
+
+    let ctx = document.getElementById('myChart2').getContext('2d');
+    chart2 = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+
+        // The data for our dataset
+        data: {
+            labels: [selectedCountryOne, selectedCountryTwo],
+            datasets: [{
+                    label: ['Cases'],
+                    backgroundColor: 'red',
+                    data: [casesChartOne, casesChartTwo]
+                },
+                {
+                    label: ['Recovered'],
+                    backgroundColor: 'blue',
+                    data: [recoveredChartOne, recoveredChartTwo]
+                },
+                {
+                    label: ['Active'],
+                    backgroundColor: 'green',
+                    data: [activeChartOne, activeChartTwo]
+                },
+                {
+                    label: ['Critical'],
+                    backgroundColor: 'yellow',
+                    data: [criticalChartOne, criticalChartTwo]
+                },
+                {
+                    label: ['Cases per million'],
+                    backgroundColor: 'orange',
+                    data: [casesPerOneMillionChartOne, casesPerOneMillionChartTwo]
+                },
+                {
+                    label: ['Cases Today'],
+                    backgroundColor: 'black',
+                    data: [casesTodayChartOne, casesTodayChartTwo]
+                },
+                {
+                    label: ['Deceased'],
+                    backgroundColor: 'grey',
+                    data: [deathsChartOne, deathsChartTwo]
+                },
+                {
+                    label: ['Deceased Today'],
+                    backgroundColor: 'purple',
+                    data: [deathsTodayChartOne, deathsTodayChartTwo]
+                },
+
+
+            ]
+        },
+
+        // Configuration options go here
+        options: {
+            title: {
+                display: true,
+                // text: 'Covid-19 Data Chart for: ' + selectedCountry,
+                fontSize: 8
+            },
+
+            legend: {
+                display: false,
+            },
+
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: true
+                    },
+                    scaleLabel: {
+                        display: false
                     }
                 }],
                 yAxes: [{
