@@ -72,3 +72,25 @@ h1 {
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
 }
+#news-source {
+    color: #000000;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.articles {
+    padding: 1rem;
+    border-radius: 0.3125rem;
+    color: #000080;
+}
+
+.articles h6 {
+    font-weight: bold;
+    color: #000080;
+}
+
+.articles a {
+    color: #bf0600;
+    font-size: 1rem;
+}
