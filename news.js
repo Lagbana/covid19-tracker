@@ -41,6 +41,7 @@ header1.textContent = newsObject.headline[1]
 let body1 = document.createElement('p')
 body1.textContent = newsObject.abstract[1]    
 let link1 = document.createElement('a')
+link1.classList.add('stretched-link')
 link1.textContent = 'Read More'
 link1.setAttribute('href', newsObject.url[1])
 link1.setAttribute('target', '_blank')    
@@ -54,6 +55,7 @@ header2.textContent = newsObject.headline[3]
 let body2 = document.createElement('p')
 body2.textContent = newsObject.abstract[3]
 let link2 = document.createElement('a')
+link2.classList.add('stretched-link')
 link2.textContent = 'Read More'
 link2.setAttribute('href', newsObject.url[3])
 link2.setAttribute('target', '_blank')
@@ -67,6 +69,7 @@ header3.textContent = newsObject.headline[5]
 let body3 = document.createElement('p')
 body3.textContent = newsObject.abstract[5]
 let link3 = document.createElement('a')
+link3.classList.add('stretched-link')
 link3.textContent = 'Read More'
 link3.setAttribute('href', newsObject.url[5] )
 link3.setAttribute('target', '_blank')
@@ -80,6 +83,7 @@ header4.textContent = newsObject.headline[7]
 let body4 = document.createElement('p')
 body4.textContent = newsObject.abstract[7]
 let link4 = document.createElement('a')
+link4.classList.add('stretched-link')
 link4.textContent = 'Read More'
 link4.setAttribute('href', newsObject.url[7] )
 link4.setAttribute('target', '_blank')
@@ -93,6 +97,7 @@ header5.textContent = newsObject.headline[9]
 let body5 = document.createElement('p')
 body5.textContent = newsObject.abstract[9]
 let link5 = document.createElement('a')
+link5.classList.add('stretched-link')
 link5.textContent = 'Read More'
 link5.setAttribute('href', newsObject.url[9] )
 link5.setAttribute('target', '_blank')
