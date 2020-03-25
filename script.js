@@ -15,7 +15,7 @@ let covidData = {
 let queryURL = 'https://corona.lmao.ninja/countries?sort=%5Bproperty%5D'
 
 // Re-Usable function to get any API data
-const getData = async(url) => {
+const getData = async (url) => {
     const result = await fetch(url).then(response => response.json())
     return result
 }
@@ -37,16 +37,19 @@ const populate = (coronaCases) => {
 }
 
 // Call ALL functions inside this on Page Load
-document.addEventListener('DOMContentLoaded', async() => {
+document.addEventListener('DOMContentLoaded', async () => {
 
     const data = await getData(queryURL)
     covidData = populate(data)
-        //Call the worldwideDataCollector function
+    //Call the worldwideDataCollector function
     worldwideDataCollector()
 
     // Display worldwide data when the user opens the page
     createBarGraph(0)
     displayTextData('Worldwide', 0)
+
+    // Display Canada VERSUS Comparison by default
+    createComparisonBarGraph(15, 3)
 
 
     // Call the create Dropdown Function
@@ -57,10 +60,10 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     // Call the compare countries event listener function
     chooseCountriesCompare()
+ 
 })
 
 // Make a worldwide object with properties
-
 let worldwideData = {
     cases: 0,
     todayCases: 0,
@@ -141,12 +144,11 @@ function createDropdown() {
 // The displayTextData function is called with the country name and its index
 
 
-
 function chooseCountry() {
     let firstDropdown = document.getElementById("countries")
     let countryIndex;
     let countryName;
-    firstDropdown.addEventListener("change", function() {
+    firstDropdown.addEventListener("change", function () {
         countryName = this.value
         let countries = covidData.countries
         for (let i = 0; i < countries.length; i++) {
@@ -168,13 +170,13 @@ function chooseCountry() {
 
 function displayTextData(countryName, countryIndex) {
     let country = document.getElementById('country')
-    country.innerHTML = "Country: " + "<span class='view-data base-text'>" + countryName + "</span>"
+    country.innerHTML = "Country: " + "<span class='base-text'>" + countryName + "</span>"
 
     let cases = document.getElementById('cases')
-    cases.innerHTML = "Total Cases: " + "<span class='view-data orange-text'>" + covidData.cases[countryIndex].toLocaleString() + "</span>"
+    cases.innerHTML = "Total Cases: " + "<span class='orange-text'>" + covidData.cases[countryIndex].toLocaleString() + "</span>"
 
     let casesToday = document.getElementById('today-cases')
-    casesToday.innerHTML = "Cases Today: " + "<span class='view-data orange-text'>" + "+ " + covidData.todayCases[countryIndex].toLocaleString() + "</span>"
+    casesToday.innerHTML = "Cases Today: " + "<span class='orange-text'>" + "+ " + covidData.todayCases[countryIndex].toLocaleString() + "</span>"
 
     let deaths = document.getElementById('deaths')
     deaths.innerHTML = "Total Deceased: " + "<span class='negative-data'>" + covidData.deaths[countryIndex].toLocaleString() + "</span>"
@@ -186,13 +188,13 @@ function displayTextData(countryName, countryIndex) {
     recovered.innerHTML = "Total Recovered: " + "<span class='positive-data'>" + covidData.recovered[countryIndex].toLocaleString() + "</span>"
 
     let active = document.getElementById('active')
-    active.innerHTML = "Active Cases: " + "<span class='view-data orange-text'>" + covidData.active[countryIndex].toLocaleString() + "</span>"
+    active.innerHTML = "Active Cases: " + "<span class='orange-text'>" + covidData.active[countryIndex].toLocaleString() + "</span>"
 
     let critical = document.getElementById('critical')
-    critical.innerHTML = "Critical Active Cases: " + "<span class='view-data orange-text'>" + covidData.critical[countryIndex].toLocaleString() + "</span>"
+    critical.innerHTML = "Critical Active Cases: " + "<span class='orange-text'>" + covidData.critical[countryIndex].toLocaleString() + "</span>"
 
     let casesPerOneMillion = document.getElementById('cases-per-million')
-    casesPerOneMillion.innerHTML = "Cases per Million: " + "<span class='view-data orange-text'>" + covidData.casesPerOneMillion[countryIndex].toLocaleString() + "</span>"
+    casesPerOneMillion.innerHTML = "Cases per Million: " + "<span class='orange-text'>" + covidData.casesPerOneMillion[countryIndex].toLocaleString() + "</span>"
 }
 
 // Define chart outside function to make it global
@@ -267,7 +269,7 @@ function chooseCountriesCompare() {
     let countryOne = document.getElementById("country-one")
     let countryIndexOne;
     let countryNameOne;
-    countryOne.addEventListener("change", function() {
+    countryOne.addEventListener("change", function () {
         countryNameOne = this.value
         let countries = covidData.countries
         for (let i = 0; i < countries.length; i++) {
@@ -280,7 +282,7 @@ function chooseCountriesCompare() {
     let countryTwo = document.getElementById("country-two")
     let countryIndexTwo;
     let countryNameTwo;
-    countryTwo.addEventListener("change", function() {
+    countryTwo.addEventListener("change", function () {
         countryNameTwo = this.value
         let countries = covidData.countries
         for (let i = 0; i < countries.length; i++) {
@@ -291,7 +293,7 @@ function chooseCountriesCompare() {
         }
     })
     let compareButton = document.getElementById('compare-button')
-    compareButton.addEventListener("click", function() {
+    compareButton.addEventListener("click", function () {
         if (chart2) {
             chart2.destroy()
         }
@@ -335,45 +337,45 @@ function createComparisonBarGraph(countryIndexOne, countryIndexTwo) {
         data: {
             labels: [selectedCountryOne, selectedCountryTwo],
             datasets: [{
-                    label: ['Cases'],
-                    backgroundColor: 'red',
-                    data: [casesChartOne, casesChartTwo]
-                },
-                {
-                    label: ['Recovered'],
-                    backgroundColor: 'blue',
-                    data: [recoveredChartOne, recoveredChartTwo]
-                },
-                {
-                    label: ['Active'],
-                    backgroundColor: 'green',
-                    data: [activeChartOne, activeChartTwo]
-                },
-                {
-                    label: ['Critical'],
-                    backgroundColor: 'yellow',
-                    data: [criticalChartOne, criticalChartTwo]
-                },
-                {
-                    label: ['Cases per million'],
-                    backgroundColor: 'orange',
-                    data: [casesPerOneMillionChartOne, casesPerOneMillionChartTwo]
-                },
-                {
-                    label: ['Cases Today'],
-                    backgroundColor: 'black',
-                    data: [casesTodayChartOne, casesTodayChartTwo]
-                },
-                {
-                    label: ['Deceased'],
-                    backgroundColor: 'grey',
-                    data: [deathsChartOne, deathsChartTwo]
-                },
-                {
-                    label: ['Deceased Today'],
-                    backgroundColor: 'purple',
-                    data: [deathsTodayChartOne, deathsTodayChartTwo]
-                },
+                label: ['Cases'],
+                backgroundColor: 'red',
+                data: [casesChartOne, casesChartTwo]
+            },
+            {
+                label: ['Recovered'],
+                backgroundColor: 'blue',
+                data: [recoveredChartOne, recoveredChartTwo]
+            },
+            {
+                label: ['Active'],
+                backgroundColor: 'green',
+                data: [activeChartOne, activeChartTwo]
+            },
+            {
+                label: ['Critical'],
+                backgroundColor: 'yellow',
+                data: [criticalChartOne, criticalChartTwo]
+            },
+            {
+                label: ['Cases per million'],
+                backgroundColor: 'orange',
+                data: [casesPerOneMillionChartOne, casesPerOneMillionChartTwo]
+            },
+            {
+                label: ['Cases Today'],
+                backgroundColor: 'black',
+                data: [casesTodayChartOne, casesTodayChartTwo]
+            },
+            {
+                label: ['Deceased'],
+                backgroundColor: 'grey',
+                data: [deathsChartOne, deathsChartTwo]
+            },
+            {
+                label: ['Deceased Today'],
+                backgroundColor: 'purple',
+                data: [deathsTodayChartOne, deathsTodayChartTwo]
+            },
 
 
             ]
