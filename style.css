@@ -5,8 +5,6 @@
 }
 
 .app-header {
-    /* background-color: #192841; */
-    /* color: #ffffff; */
     padding-top: 0.8rem;
     padding-bottom: 0.8rem;
 }
@@ -65,7 +63,17 @@ h1 {
     margin-left: auto;
 }
 
-.chart-card {
+.news-container {
+    background-color: #fafafa;
+    border: 0.04rem solid #bfbfbf;
+    border-radius: 0.3125rem;
+    box-shadow: none !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    margin-top: 2rem;
+}
+
+.graphs {
     background-color: #fafafa;
     border: 0.04rem solid #bfbfbf;
     border-radius: 0.3125rem;
@@ -79,10 +87,10 @@ h1 {
     margin-left: 5rem;
 }
 
-.news-container {
+/* .news-container {
     margin-right: 8rem;
     margin-left: 8rem !important;
-}
+} */
 
 #news-source {
     color: #000000;
@@ -131,3 +139,134 @@ h1 {
 .base-text {
     color: #757575;
 }
+
+@media only screen and (max-width: 575px) {
+    .news-container {
+        margin-right: auto !important;
+        margin-left: 0.5rem !important;
+        width: 95% !important;
+        position: relative;
+        margin-top: 70rem;
+      }
+    #nyt-logo {
+        width: 60%;
+        margin-left: 4rem;
+    }
+    .contents {
+        /* font-size: 0.52rem; */
+        width: 95% !important;
+        margin-right: auto !important;
+        margin-left: 0.5rem !important;
+        position: absolute;
+    }
+    .statistics {
+        font-size: 0.52rem;
+        padding: 0rem !important;
+        border: 0.06rem solid #bfbfbf;
+    }
+    .graphs {
+        /* padding: 0rem !important; */
+        font-size: 0.6rem;
+    }
+    #news-source {
+        color: #000000;
+        font-weight: bold;
+        font-size: 2rem;
+        margin-top: 0.8rem;
+        margin-bottom: 1.2rem;
+        margin-left: 2rem;
+    }
+  }
+
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    .news-container {
+        margin-right: auto !important;
+        margin-left: 4rem !important;
+        width: 80% !important;
+        position: relative;
+        margin-top: 84rem;
+      }
+    #nyt-logo {
+        width: 60%;
+        margin-left: 6rem;
+    }
+    .contents {
+        font-size: 0.76rem;
+        width: 80% !important;
+        margin-right: auto !important;
+        margin-left: 4rem !important;
+        position: absolute;
+    }
+    #news-source {
+        color: #000000;
+        font-weight: bold;
+        font-size: 2.5rem;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+        margin-left: 2rem;
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    .news-container {
+        margin-right: 3rem;
+        margin-left: 3rem!important;
+      }
+    #nyt-logo {
+        width: 80%;
+        margin-left: 1rem;
+    }
+    .contents {
+        font-size: 0.7rem;
+    }
+    #news-source {
+        color: #000000;
+        font-weight: bold;
+        font-size: 1.35rem;
+        margin-top: 0.8rem;
+        margin-bottom: 1.2rem;
+        margin-left: 0.8rem;
+    }
+  }
+
+  @media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .news-container {
+        margin-right: 3rem;
+        margin-left: 4rem!important;
+      }
+    #nyt-logo {
+        margin-left: 1rem;
+    }
+    .contents {
+        font-size: 0.95rem;
+    }
+    #news-source {
+        color: #000000;
+        font-weight: bold;
+        font-size: 1.8rem;
+        margin-top: 1.2rem;
+        margin-bottom: 1.5rem;
+        margin-left: 1.2rem;
+    }
+  }
+
+  @media only screen and (min-width: 1200px) {
+    .news-container {
+        margin-right: 7rem;
+        margin-left: 8rem!important;
+      }
+    #nyt-logo {
+        margin-left: 1rem;
+    }
+    .contents {
+        font-size: 1.1rem;
+    }
+    #news-source {
+        color: #000000;
+        font-weight: bold;
+        font-size: 2.5rem;
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+        margin-left: 1.2rem;
+    }
+  }

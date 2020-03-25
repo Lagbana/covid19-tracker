@@ -177,13 +177,13 @@ function displayTextData(countryName, countryIndex) {
     cases.innerHTML = "Total Cases: " + "<span class='orange-text'>" + covidData.cases[countryIndex].toLocaleString() + "</span>"
 
     let casesToday = document.getElementById('today-cases')
-    casesToday.innerHTML = "Cases Today: " + "<span class='orange-text'>" + covidData.todayCases[countryIndex].toLocaleString() + " &uarr;" + "</span>"
+    casesToday.innerHTML = "Cases Today: " + "<span class='orange-text'>" + covidData.todayCases[countryIndex].toLocaleString() + " &#x1f879;" + "</span>"
 
     let deaths = document.getElementById('deaths')
     deaths.innerHTML = "Total Deceased: " + "<span class='negative-data'>" + covidData.deaths[countryIndex].toLocaleString() + "</span>"
 
     let deathsToday = document.getElementById('today-deaths')
-    deathsToday.innerHTML = "Deceased Today: " + "<span class='negative-data'>" + covidData.todayDeaths[countryIndex].toLocaleString() + " &uarr;" + "</span>"
+    deathsToday.innerHTML = "Deceased Today: " + "<span class='negative-data'>" + covidData.todayDeaths[countryIndex].toLocaleString() + " &#x1f879;" + "</span>"
 
     let recovered = document.getElementById('recovered')
     recovered.innerHTML = "Total Recovered: " + "<span class='positive-data'>" + covidData.recovered[countryIndex].toLocaleString() + "</span>"
