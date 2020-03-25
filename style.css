@@ -1,7 +1,14 @@
-/* Works for large and extra-large devices only */
-
 * html {
     box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
 }
 
 .app-header {
@@ -87,11 +94,6 @@ h1 {
     margin-left: 5rem;
 }
 
-/* .news-container {
-    margin-right: 8rem;
-    margin-left: 8rem !important;
-} */
-
 #news-source {
     color: #000000;
     font-weight: bold;
@@ -140,13 +142,18 @@ h1 {
     color: #757575;
 }
 
+.covid-footer{
+    padding-top: 0.5rem !important;
+}
+
+/* Media Queries */
 @media only screen and (max-width: 575px) {
     .news-container {
         margin-right: auto !important;
         margin-left: 0.5rem !important;
         width: 95% !important;
         position: relative;
-        margin-top: 70rem;
+        margin-top: 120rem;
       }
     #nyt-logo {
         width: 60%;
@@ -176,6 +183,10 @@ h1 {
         margin-bottom: 1.2rem;
         margin-left: 2rem;
     }
+    .slider .slides li img {
+        background-size:100% auto;
+        background-repeat: no-repeat;
+    }
   }
 
   @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -184,7 +195,8 @@ h1 {
         margin-left: 4rem !important;
         width: 80% !important;
         position: relative;
-        margin-top: 84rem;
+        z-index: 0;
+        margin-top: 134rem;
       }
     #nyt-logo {
         width: 60%;
@@ -196,6 +208,7 @@ h1 {
         margin-right: auto !important;
         margin-left: 4rem !important;
         position: absolute;
+        z-index: 1;
     }
     #news-source {
         color: #000000;
@@ -204,6 +217,10 @@ h1 {
         margin-top: 1rem;
         margin-bottom: 1.5rem;
         margin-left: 2rem;
+    }
+    .slider .slides li img {
+        background-size:100% auto;
+        background-repeat: no-repeat;
     }
   }
 
@@ -227,6 +244,10 @@ h1 {
         margin-bottom: 1.2rem;
         margin-left: 0.8rem;
     }
+    .slider .slides li img {
+        background-size:100% auto;
+        background-repeat: no-repeat;
+    }
   }
 
   @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -248,6 +269,10 @@ h1 {
         margin-bottom: 1.5rem;
         margin-left: 1.2rem;
     }
+    .slider .slides li img {
+        background-size:100% auto;
+        background-repeat: no-repeat;
+    }
   }
 
   @media only screen and (min-width: 1200px) {
@@ -256,7 +281,7 @@ h1 {
         margin-left: 8rem!important;
       }
     #nyt-logo {
-        margin-left: 1rem;
+        margin-left: 5rem;
     }
     .contents {
         font-size: 1.1rem;
@@ -269,4 +294,9 @@ h1 {
         margin-bottom: 2rem;
         margin-left: 1.2rem;
     }
+    .slider .slides li img {
+        background-size:100% auto;
+        background-repeat: no-repeat;
+    }
   }
+
