@@ -82,7 +82,6 @@ h1 {
     margin-left: 8rem !important;
 }
 
-
 #news-source {
     color: #000000;
     font-weight: bold;
@@ -109,6 +108,24 @@ h1 {
     color: #bf0600;
     font-size: 1rem;
 }
+
+.articles a:hover {
+    color: #71c7ec;
+}
+
+.stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: auto;
+    content: "";
+    background-color: rgba(0,0,0,0);
+}
+
+
 
 .base-text {
     color: #757575;
