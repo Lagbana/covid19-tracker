@@ -3,11 +3,18 @@ let article2 = document.querySelector('#two')
 let article3 = document.querySelector('#three')
 let article4 = document.querySelector('#four')
 let article5 = document.querySelector('#five')
+let picOne = document.querySelector('#pic-one')
+let picTwo = document.querySelector('#pic-two')
+let picThree = document.querySelector('#pic-three')
+let picFour = document.querySelector('#pic-four')
+let picFive = document.querySelector('#pic-five')
+
 // New York Times data object
 let newsObject = {
     headline: [],
     abstract: [],
-    url: []
+    url: [],
+    image: []
 }
 
 
@@ -21,12 +28,14 @@ const getNews = (newsResults) => {
         newsObject.headline.push(index.headline.main) //-------------------> List of headlines
         newsObject.abstract.push(index.abstract) //-------------------> List of article abstract / summary
         newsObject.url.push(index.web_url) //-------------------> List of article URLs
+        newsObject.image.push('https://static01.nyt.com/' + index.multimedia[38].url) //-------------------> List of image URLs
     }
-
+  
 }
 
 const createArticles = () => {
 // Article 1
+picOne.setAttribute('src', newsObject.image[1])
 let header1 = document.createElement('h6')
 header1.textContent = newsObject.headline[1]    
 let body1 = document.createElement('p')
@@ -38,7 +47,8 @@ link1.setAttribute('target', '_blank')
     article1.append(header1)
     article1.append(body1)
     article1.append(link1)
-// Article 2    
+// Article 2
+picTwo.setAttribute('src', newsObject.image[3])    
 let header2 = document.createElement('h6')
 header2.textContent = newsObject.headline[3]
 let body2 = document.createElement('p')
@@ -51,6 +61,7 @@ link2.setAttribute('target', '_blank')
     article2.append(body2)
     article2.append(link2)
 // Article 3
+picThree.setAttribute('src', newsObject.image[5])
 let header3 = document.createElement('h6')
 header3.textContent = newsObject.headline[5]
 let body3 = document.createElement('p')
@@ -62,7 +73,8 @@ link3.setAttribute('target', '_blank')
     article3.append(header3)
     article3.append(body3)
     article3.append(link3)
-// Article 4    
+// Article 4
+picFour.setAttribute('src', newsObject.image[7])    
 let header4 = document.createElement('h6')
 header4.textContent = newsObject.headline[7]
 let body4 = document.createElement('p')
@@ -74,7 +86,8 @@ link4.setAttribute('target', '_blank')
     article4.append(header4)
     article4.append(body4)
     article4.append(link4)
-// Article 5    
+// Article 5
+picFive.setAttribute('src', newsObject.image[9])    
 let header5 = document.createElement('h6')
 header5.textContent = newsObject.headline[9]
 let body5 = document.createElement('p')

@@ -6,8 +6,8 @@
 .app-header{
     /* background-color: #192841; */
     /* color: #ffffff; */
-    /* padding-top: 1rem; */
-    padding-bottom: 1rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
 }
 
 h1 {
@@ -71,9 +71,12 @@ h1 {
     box-shadow: none !important;
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
-    margin-top: 2.1rem;
+    margin-top: 2rem;
 }
 
+#nyt-logo{
+    margin-left: 5rem;
+}
 .news-container {
     margin-right: 8rem;
     margin-left: 8rem !important;
@@ -83,14 +86,18 @@ h1 {
 #news-source {
     color: #000000;
     font-weight: bold;
-    font-size: 1.5rem;
-    margin-top: 2rem;
+    font-size: 2rem;
+    margin-top: 1.5rem;
     margin-bottom: 2rem;
+    margin-left:4rem;
 }
 .articles {
     padding: 1rem;
     border-radius: 0.3125rem;
     color: #000080;
+    width: 90%;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 .articles h6 {

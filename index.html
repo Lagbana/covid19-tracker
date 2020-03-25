@@ -3,8 +3,9 @@
 
 <head>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-     <!-- Compiled and minified CSS -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COVID-19 Tracker</title>
@@ -13,37 +14,49 @@
 </head>
 
 <body>
+
     <header class='app-header grey darken-1 white-text center-align'>
         <!--Responsive nav bar with collapseable down for mobile-->
-
-            <!-- <div class="nav-wrapper grey darken-1 app-header">
-              <h1>COVID-19 Tracker</h1><i class="large material-icons">sort</i>
-            </div> -->
-            <h1>COVID-19 Tracker <i class="large material-icons">sort</i></h1>
-        
-<!-- app-header -->
-
-    </header> 
+        <h1>COVID-19 Tracker <i class="fas fa-poll"></i></h1>
+    </header>
 
     <main class='row '>
         <section class='card chart-card col s12 m4 l3 grey lighten-5 news-container'>
-            <h6 id='news-source'>New York Times News</h6>
+            <h5 id='news-source'><i class="far fa-newspaper"></i> Current News</h5>
 
             <article id='one' class='card articles'>
+                <div class="card-image">
+                    <img id="pic-one" src="">
+                </div>
 
             </article>
             <article id='two' class='card articles'>
+                <div class="card-image">
+                    <img id="pic-two" src="">
+                </div>
 
             </article>
             <article id='three' class='card articles'>
+                <div class="card-image">
+                    <img id="pic-three" src="">
+                </div>
 
             </article>
             <article id='four' class='card articles'>
+                <div class="card-image">
+                    <img id="pic-four" src="">
+                </div>
 
             </article>
             <article id='five' class='card articles'>
+                <div class="card-image">
+                    <img id="pic-five" src="">
+                </div>
 
             </article>
+            <a href="https://developer.nytimes.com" target="_blank">
+                <img id='nyt-logo' src="resources/nytimes.png" alt="New York Times Logo">
+            </a>
             <!-- Twitter Embedded -->
             <!-- <article>
                 <a class="twitter-timeline" data-lang="en" data-height="1200" data-theme="light" href="https://twitter.com/LarryA_14/lists/covid-19-tracker?ref_src=twsrc%5Etfw">A Twitter List by LarryA_14</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -119,7 +132,7 @@
                     <div class="row">
                         <div class="col">
                             <button id="compare-button" class="btn waves-effect grey darken-1"><i
-                                class="large material-icons right">insert_chart</i>Compare</button>
+                                    class="large material-icons right">insert_chart</i>Compare</button>
                         </div>
                     </div>
 
