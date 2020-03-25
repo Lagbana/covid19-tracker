@@ -186,13 +186,13 @@ function displayTextData(countryName, countryIndex) {
     recovered.innerHTML = "Total Recovered: " + "<span class='positive-data'>" + covidData.recovered[countryIndex].toLocaleString() + "</span>"
 
     let active = document.getElementById('active')
-    active.innerHTML = "Active Cases: " + "<span class='view-data red-text'>" + covidData.active[countryIndex].toLocaleString() + "</span>"
+    active.innerHTML = "Active Cases: " + "<span class='view-data orange-text'>" + covidData.active[countryIndex].toLocaleString() + "</span>"
 
     let critical = document.getElementById('critical')
-    critical.innerHTML = "Critical Active Cases: " + "<span class='view-data red-text'>" + covidData.critical[countryIndex].toLocaleString() + "</span>"
+    critical.innerHTML = "Critical Active Cases: " + "<span class='view-data orange-text'>" + covidData.critical[countryIndex].toLocaleString() + "</span>"
 
     let casesPerOneMillion = document.getElementById('cases-per-million')
-    casesPerOneMillion.innerHTML = "Cases per Million: " + "<span class='view-data base-text'>" + covidData.casesPerOneMillion[countryIndex].toLocaleString() + "</span>"
+    casesPerOneMillion.innerHTML = "Cases per Million: " + "<span class='view-data orange-text'>" + covidData.casesPerOneMillion[countryIndex].toLocaleString() + "</span>"
 }
 
 // Define chart outside function to make it global
