@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', async() => {
         //Call the worldwideDataCollector function
     worldwideDataCollector()
 
-    // Display worldwide data when the user opens the page
+    // Display worldwide data by default
     createBarGraph(0)
     displayTextData('Worldwide', 0)
 
@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     // Call the compare countries event listener function
     chooseCountriesCompare()
-
     console.log(covidData)
 })
 
@@ -295,10 +294,13 @@ function chooseCountriesCompare() {
     })
     let compareButton = document.getElementById('compare-button')
     compareButton.addEventListener("click", function() {
-        if (chart2) {
-            chart2.destroy()
+
+        if (countryIndexOne != null && countryIndexTwo != null) {
+            if (chart2) {
+                chart2.destroy()
+            }
+            createComparisonBarGraph(countryNameOne, countryNameTwo, countryIndexOne, countryIndexTwo)
         }
-        createComparisonBarGraph(countryNameOne, countryNameTwo, countryIndexOne, countryIndexTwo)
     })
 }
 
@@ -310,7 +312,7 @@ let chart2;
 function createComparisonBarGraph(countryNameOne, countryNameTwo, countryIndexOne, countryIndexTwo) {
     let selectedCountryOne = covidData.countries[countryIndexOne]
     let casesPerOneMillionChartOne = covidData.casesPerOneMillion[countryIndexOne]
-
+    console.log(casesPerOneMillionChartOne)
 
     let selectedCountryTwo = covidData.countries[countryIndexTwo]
     let casesPerOneMillionChartTwo = covidData.casesPerOneMillion[countryIndexTwo]
