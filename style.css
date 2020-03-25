@@ -4,9 +4,9 @@
 }
 
 .app-header{
-    background-color: #192841;
-    color: #ffffff;
-    padding-top: 1rem;
+    /* background-color: #192841; */
+    /* color: #ffffff; */
+    /* padding-top: 1rem; */
     padding-bottom: 1rem;
 }
 
@@ -37,7 +37,7 @@ h1 {
 }
 
 .view-data {
-    color: #29b6f6;
+    /* color: #29b6f6; */
     font-weight: bold;
 }
 
@@ -71,6 +71,7 @@ h1 {
     box-shadow: none !important;
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
+    margin-top: 2.1rem;
 }
 
 .news-container {
@@ -100,4 +101,8 @@ h1 {
 .articles a {
     color: #bf0600;
     font-size: 1rem;
+}
+
+.base-text {
+    color: #757575;
 }
