@@ -168,13 +168,13 @@ function chooseCountry() {
 
 function displayTextData(countryName, countryIndex) {
     let country = document.getElementById('country')
-    country.innerHTML = "Country: " + "<span class='view-data'>" + countryName + "</span>"
+    country.innerHTML = "Country: " + "<span class='view-data base-text'>" + countryName + "</span>"
 
     let cases = document.getElementById('cases')
-    cases.innerHTML = "Total Cases: " + "<span class='view-data'>" + covidData.cases[countryIndex].toLocaleString() + "</span>"
+    cases.innerHTML = "Total Cases: " + "<span class='view-data orange-text'>" + covidData.cases[countryIndex].toLocaleString() + "</span>"
 
     let casesToday = document.getElementById('today-cases')
-    casesToday.innerHTML = "Cases Today: " + "<span class='view-data'>" + "+ " + covidData.todayCases[countryIndex].toLocaleString() + "</span>"
+    casesToday.innerHTML = "Cases Today: " + "<span class='view-data orange-text'>" + "+ " + covidData.todayCases[countryIndex].toLocaleString() + "</span>"
 
     let deaths = document.getElementById('deaths')
     deaths.innerHTML = "Total Deceased: " + "<span class='negative-data'>" + covidData.deaths[countryIndex].toLocaleString() + "</span>"
@@ -186,13 +186,13 @@ function displayTextData(countryName, countryIndex) {
     recovered.innerHTML = "Total Recovered: " + "<span class='positive-data'>" + covidData.recovered[countryIndex].toLocaleString() + "</span>"
 
     let active = document.getElementById('active')
-    active.innerHTML = "Active Cases: " + "<span class='view-data'>" + covidData.active[countryIndex].toLocaleString() + "</span>"
+    active.innerHTML = "Active Cases: " + "<span class='view-data red-text'>" + covidData.active[countryIndex].toLocaleString() + "</span>"
 
     let critical = document.getElementById('critical')
-    critical.innerHTML = "Critical Active Cases: " + "<span class='view-data'>" + covidData.critical[countryIndex].toLocaleString() + "</span>"
+    critical.innerHTML = "Critical Active Cases: " + "<span class='view-data red-text'>" + covidData.critical[countryIndex].toLocaleString() + "</span>"
 
     let casesPerOneMillion = document.getElementById('cases-per-million')
-    casesPerOneMillion.innerHTML = "Cases per Million: " + "<span class='view-data'>" + covidData.casesPerOneMillion[countryIndex].toLocaleString() + "</span>"
+    casesPerOneMillion.innerHTML = "Cases per Million: " + "<span class='view-data base-text'>" + covidData.casesPerOneMillion[countryIndex].toLocaleString() + "</span>"
 }
 
 // Define chart outside function to make it global
