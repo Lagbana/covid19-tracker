@@ -327,7 +327,7 @@ function createComparisonBarGraph(countryNameOne, countryNameTwo, countryIndexOn
             labels: [selectedCountryOne, selectedCountryTwo],
             datasets: [{
                 label: ['Cases per million'],
-                backgroundColor: ['red', 'blue'],
+                backgroundColor: ['rgb(255, 99, 132', 'rgb(146, 183, 254'],
                 data: [casesPerOneMillionChartOne, casesPerOneMillionChartTwo]
             }, ]
         },

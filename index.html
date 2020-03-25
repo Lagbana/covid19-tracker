@@ -143,9 +143,57 @@
                     <canvas class="col s12 chart" id="myChart2"></canvas>
                 </div>
             </div>
-        </section>
 
+            <!--Added IMAGE SLIDE WITH HEALTH INFO-->
+            <div class='row'>
+                <div class="col s10 card chart-card ">
+            
+                    <div class="slider">
+                        <ul class="slides">
+                            <li>
+                                <img src="resources/covideSlideImage.png"> <!-- random image -->
+                                <div class="caption center-align">
+                                </div>
+                            </li>
+                            <li>
+                                <img src="resources/covid19-distancing.jpg"> <!-- random image -->
+                               
+                            </li>
+                            <li>
+                                <img src="resources/covidsymtoms.png"> <!-- random image -->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!--Footer with links to our githubs and repo-->
+    <footer class="page-footer blue-grey lighten-1">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Covid-19 Tracker 2020</h5>
+              <p class="grey-text text-lighten-4">A tool to help visualize information related to Covid-19 pandamic.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Github Links</h5>
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="https://github.com/Lagbana">Larry  Agbana</a></li>
+                <li><a class="grey-text text-lighten-3" href="https://github.com/dustinirving">Dustin Irving</a></li>
+                <li><a class="grey-text text-lighten-3" href="https://github.com/K4c3y">Kacey Churchill</a></li>
+                <li><a class="grey-text text-lighten-3" href="https://github.com/Lagbana/covid19-tracker">Repository</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container center">
+            © 2020 Copyright
+            </div>
+          </div>
+      </footer>
 
 
 
@@ -168,8 +216,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 
     <script>
-        //script for Dropdown menu
-        $(".button-collapse").sideNav();
+        //script for image slide
+        $(document).ready(function () {
+                $('.slider').slider();
+            });
     </script>
 
 </body>
