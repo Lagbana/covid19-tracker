@@ -2,22 +2,32 @@
 <html lang="en">
 
 <head>
+       <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COVID-19 Tracker</title>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+  
     <link rel="shortcut icon" type="image/png" href="resources/covid19-favicon.png">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+ 
     <link rel="stylesheet" href="style.css">
-
-
 </head>
 
 <body>
     <header>
-        <div class="app-header">
-            <h1 class="center-align">COVID-19 Tracker</h1>
-        </div>
+        <!--Responsive nav bar with collapseable down for mobile-->
+
+        <nav>
+            <div class="nav-wrapper grey darken-1">
+              <a href="#" class="brand-logo center flow-text"><h1><i
+                class="large material-icons right">sort</i>COVID-19 Tracker</a></h1>
+            </div>
+          </nav>
+
+
     </header>
 
     <main class='row container'>
@@ -90,7 +100,8 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <button id="compare-button">Compare</button>
+                            <button id="compare-button" class="btn waves-effect grey darken-1"><i
+                                class="large material-icons right">insert_chart</i>Compare</button>
                         </div>
                     </div>
 
@@ -99,7 +110,7 @@
                 </div>
             </div>
         </section>
-        <section class='col s12 m4 l3 light-blue lighten-1'>
+        <section class='card chart-card col s12 m4 l3 grey lighten-5'>
             <h6 id='news-source'>New York Times News</h6>
 
             <article id='one' class='card articles'>
@@ -135,9 +146,19 @@
     <script src="script.js"></script>
     <script src="news.js"></script>
     <!-- Compiled and minified JavaScript -->
-    <script src=https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js></script>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js> </script> <!-- Chart JS -->
+
     <!-- Chart JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+    <script>
+        //script for Dropdown menu
+        $(".button-collapse").sideNav();
+    </script>
+
 </body>
 
 </html>
