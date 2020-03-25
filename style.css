@@ -1,9 +1,10 @@
 /* Works for large and extra-large devices only */
+
 * html {
     box-sizing: border-box;
 }
 
-.app-header{
+.app-header {
     /* background-color: #192841; */
     /* color: #ffffff; */
     padding-top: 0.8rem;
@@ -24,7 +25,7 @@ h1 {
     box-shadow: none !important;
 }
 
-.stats-header{
+.stats-header {
     text-indent: -1rem;
     margin-bottom: 0rem;
     text-align: center;
@@ -47,7 +48,7 @@ h1 {
 }
 
 .positive-data {
-    color: 	#00cd00;
+    color: #00cd00;
     font-weight: bold;
 }
 
@@ -74,9 +75,10 @@ h1 {
     margin-top: 2rem;
 }
 
-#nyt-logo{
+#nyt-logo {
     margin-left: 5rem;
 }
+
 .news-container {
     margin-right: 8rem;
     margin-left: 8rem !important;
@@ -88,15 +90,16 @@ h1 {
     font-size: 2rem;
     margin-top: 1.5rem;
     margin-bottom: 2rem;
-    margin-left:4rem;
+    margin-left: 4rem;
 }
+
 .articles {
     padding: 1rem;
     border-radius: 0.3125rem;
     color: #000080;
     width: 90%;
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .articles h6 {
@@ -110,7 +113,7 @@ h1 {
 }
 
 .articles a:hover {
-    color: #71c7ec;
+    color: grey;
 }
 
 .stretched-link::after {
@@ -122,10 +125,8 @@ h1 {
     z-index: 1;
     pointer-events: auto;
     content: "";
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
 }
-
-
 
 .base-text {
     color: #757575;

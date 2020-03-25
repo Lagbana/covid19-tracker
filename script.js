@@ -15,7 +15,7 @@ let covidData = {
 let queryURL = 'https://corona.lmao.ninja/countries?sort=%5Bproperty%5D'
 
 // Re-Usable function to get any API data
-const getData = async (url) => {
+const getData = async(url) => {
     const result = await fetch(url).then(response => response.json())
     return result
 }
@@ -37,11 +37,11 @@ const populate = (coronaCases) => {
 }
 
 // Call ALL functions inside this on Page Load
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async() => {
 
     const data = await getData(queryURL)
     covidData = populate(data)
-    //Call the worldwideDataCollector function
+        //Call the worldwideDataCollector function
     worldwideDataCollector()
 
     // Display worldwide data when the user opens the page
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     displayTextData('Worldwide', 0)
 
     // Display Canada VERSUS Comparison by default
-    createComparisonBarGraph(15, 3)
+    createComparisonBarGraph('Canada', 'USA', 16, 3)
 
 
     // Call the create Dropdown Function
@@ -60,7 +60,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Call the compare countries event listener function
     chooseCountriesCompare()
- 
+
+    console.log(covidData)
 })
 
 // Make a worldwide object with properties
@@ -148,7 +149,7 @@ function chooseCountry() {
     let firstDropdown = document.getElementById("countries")
     let countryIndex;
     let countryName;
-    firstDropdown.addEventListener("change", function () {
+    firstDropdown.addEventListener("change", function() {
         countryName = this.value
         let countries = covidData.countries
         for (let i = 0; i < countries.length; i++) {
@@ -176,13 +177,13 @@ function displayTextData(countryName, countryIndex) {
     cases.innerHTML = "Total Cases: " + "<span class='orange-text'>" + covidData.cases[countryIndex].toLocaleString() + "</span>"
 
     let casesToday = document.getElementById('today-cases')
-    casesToday.innerHTML = "Cases Today: " + "<span class='orange-text'>" + "+ " + covidData.todayCases[countryIndex].toLocaleString() + "</span>"
+    casesToday.innerHTML = "Cases Today: " + "<span class='orange-text'>" + covidData.todayCases[countryIndex].toLocaleString() + " &uarr;" + "</span>"
 
     let deaths = document.getElementById('deaths')
     deaths.innerHTML = "Total Deceased: " + "<span class='negative-data'>" + covidData.deaths[countryIndex].toLocaleString() + "</span>"
 
     let deathsToday = document.getElementById('today-deaths')
-    deathsToday.innerHTML = "Deceased Today: " + "<span class='negative-data'>" + "+ " + covidData.todayDeaths[countryIndex].toLocaleString() + "</span>"
+    deathsToday.innerHTML = "Deceased Today: " + "<span class='negative-data'>" + covidData.todayDeaths[countryIndex].toLocaleString() + " &uarr;" + "</span>"
 
     let recovered = document.getElementById('recovered')
     recovered.innerHTML = "Total Recovered: " + "<span class='positive-data'>" + covidData.recovered[countryIndex].toLocaleString() + "</span>"
@@ -224,8 +225,8 @@ function createBarGraph(countryIndex) {
             labels: ['Cases', 'Recovered', 'Active', 'Critical', 'Cases per million', 'Cases Today', 'Deceased', 'Deceased Today'],
             datasets: [{
                 // label: 'Number of People',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgb(146, 183, 254)',
+                borderColor: 'rgb(146, 183, 254)',
                 data: [casesChart, recoveredChart, activeChart, criticalChart, casesPerOneMillionChart, casesTodayChart, deathsChart, deathsTodayChart]
 
             }]
@@ -269,7 +270,7 @@ function chooseCountriesCompare() {
     let countryOne = document.getElementById("country-one")
     let countryIndexOne;
     let countryNameOne;
-    countryOne.addEventListener("change", function () {
+    countryOne.addEventListener("change", function() {
         countryNameOne = this.value
         let countries = covidData.countries
         for (let i = 0; i < countries.length; i++) {
@@ -282,7 +283,7 @@ function chooseCountriesCompare() {
     let countryTwo = document.getElementById("country-two")
     let countryIndexTwo;
     let countryNameTwo;
-    countryTwo.addEventListener("change", function () {
+    countryTwo.addEventListener("change", function() {
         countryNameTwo = this.value
         let countries = covidData.countries
         for (let i = 0; i < countries.length; i++) {
@@ -293,11 +294,11 @@ function chooseCountriesCompare() {
         }
     })
     let compareButton = document.getElementById('compare-button')
-    compareButton.addEventListener("click", function () {
+    compareButton.addEventListener("click", function() {
         if (chart2) {
             chart2.destroy()
         }
-        createComparisonBarGraph(countryIndexOne, countryIndexTwo)
+        createComparisonBarGraph(countryNameOne, countryNameTwo, countryIndexOne, countryIndexTwo)
     })
 }
 
@@ -306,26 +307,12 @@ function chooseCountriesCompare() {
 
 let chart2;
 
-function createComparisonBarGraph(countryIndexOne, countryIndexTwo) {
+function createComparisonBarGraph(countryNameOne, countryNameTwo, countryIndexOne, countryIndexTwo) {
     let selectedCountryOne = covidData.countries[countryIndexOne]
-    let casesChartOne = covidData.cases[countryIndexOne]
-    let casesTodayChartOne = covidData.todayCases[countryIndexOne]
-    let deathsChartOne = covidData.deaths[countryIndexOne]
-    let deathsTodayChartOne = covidData.todayDeaths[countryIndexOne]
-    let recoveredChartOne = covidData.recovered[countryIndexOne]
-    let activeChartOne = covidData.active[countryIndexOne]
-    let criticalChartOne = covidData.critical[countryIndexOne]
     let casesPerOneMillionChartOne = covidData.casesPerOneMillion[countryIndexOne]
 
 
     let selectedCountryTwo = covidData.countries[countryIndexTwo]
-    let casesChartTwo = covidData.cases[countryIndexTwo]
-    let casesTodayChartTwo = covidData.todayCases[countryIndexTwo]
-    let deathsChartTwo = covidData.deaths[countryIndexTwo]
-    let deathsTodayChartTwo = covidData.todayDeaths[countryIndexTwo]
-    let recoveredChartTwo = covidData.recovered[countryIndexTwo]
-    let activeChartTwo = covidData.active[countryIndexTwo]
-    let criticalChartTwo = covidData.critical[countryIndexTwo]
     let casesPerOneMillionChartTwo = covidData.casesPerOneMillion[countryIndexTwo]
 
     let ctx = document.getElementById('myChart2').getContext('2d');
@@ -337,48 +324,10 @@ function createComparisonBarGraph(countryIndexOne, countryIndexTwo) {
         data: {
             labels: [selectedCountryOne, selectedCountryTwo],
             datasets: [{
-                label: ['Cases'],
-                backgroundColor: 'red',
-                data: [casesChartOne, casesChartTwo]
-            },
-            {
-                label: ['Recovered'],
-                backgroundColor: 'blue',
-                data: [recoveredChartOne, recoveredChartTwo]
-            },
-            {
-                label: ['Active'],
-                backgroundColor: 'green',
-                data: [activeChartOne, activeChartTwo]
-            },
-            {
-                label: ['Critical'],
-                backgroundColor: 'yellow',
-                data: [criticalChartOne, criticalChartTwo]
-            },
-            {
                 label: ['Cases per million'],
-                backgroundColor: 'orange',
+                backgroundColor: ['red', 'blue'],
                 data: [casesPerOneMillionChartOne, casesPerOneMillionChartTwo]
-            },
-            {
-                label: ['Cases Today'],
-                backgroundColor: 'black',
-                data: [casesTodayChartOne, casesTodayChartTwo]
-            },
-            {
-                label: ['Deceased'],
-                backgroundColor: 'grey',
-                data: [deathsChartOne, deathsChartTwo]
-            },
-            {
-                label: ['Deceased Today'],
-                backgroundColor: 'purple',
-                data: [deathsTodayChartOne, deathsTodayChartTwo]
-            },
-
-
-            ]
+            }, ]
         },
 
         // Configuration options go here
