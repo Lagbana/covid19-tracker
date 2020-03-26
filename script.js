@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     // Call the compare countries event listener function
     chooseCountriesCompare()
-    console.log(covidData)
 })
 
 // Make a worldwide object with properties
@@ -160,7 +159,6 @@ function chooseCountry() {
         if (chart) {
             chart.destroy()
         }
-        console.log(countryName)
         createBarGraph(countryIndex)
         displayTextData(countryName, countryIndex)
     })
@@ -223,7 +221,6 @@ function createBarGraph(countryIndex) {
         data: {
             labels: ['Cases', 'Recovered', 'Active', 'Critical', 'Cases per million', 'Cases Today', 'Deceased', 'Deceased Today'],
             datasets: [{
-                // label: 'Number of People',
                 backgroundColor: 'rgb(146, 183, 254)',
                 borderColor: 'rgb(146, 183, 254)',
                 data: [casesChart, recoveredChart, activeChart, criticalChart, casesPerOneMillionChart, casesTodayChart, deathsChart, deathsTodayChart]
@@ -265,6 +262,7 @@ function createBarGraph(countryIndex) {
 }
 
 
+// This function calles the comparison bar graph function based what two countries the user chooses
 function chooseCountriesCompare() {
     let countryOne = document.getElementById("country-one")
     let countryIndexOne;
@@ -312,7 +310,6 @@ let chart2;
 function createComparisonBarGraph(countryNameOne, countryNameTwo, countryIndexOne, countryIndexTwo) {
     let selectedCountryOne = covidData.countries[countryIndexOne]
     let casesPerOneMillionChartOne = covidData.casesPerOneMillion[countryIndexOne]
-    console.log(casesPerOneMillionChartOne)
 
     let selectedCountryTwo = covidData.countries[countryIndexTwo]
     let casesPerOneMillionChartTwo = covidData.casesPerOneMillion[countryIndexTwo]
@@ -327,7 +324,7 @@ function createComparisonBarGraph(countryNameOne, countryNameTwo, countryIndexOn
             labels: [selectedCountryOne, selectedCountryTwo],
             datasets: [{
                 label: ['Cases per million'],
-                backgroundColor: ['rgb(255, 99, 132', 'rgb(146, 183, 254'],
+                backgroundColor: ['rgb(255, 99, 132)', 'rgb(146, 183, 254)'],
                 data: [casesPerOneMillionChartOne, casesPerOneMillionChartTwo]
             }, ]
         },
@@ -336,7 +333,6 @@ function createComparisonBarGraph(countryNameOne, countryNameTwo, countryIndexOn
         options: {
             title: {
                 display: true,
-                // text: 'Covid-19 Data Chart for: ' + selectedCountry,
                 fontSize: 8
             },
 
