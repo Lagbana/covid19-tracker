@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', async() => {
 
     // Call the compare countries event listener function
     chooseCountriesCompare()
-    console.log(covidData)
 })
 
 // Make a worldwide object with properties
@@ -176,13 +175,13 @@ function displayTextData(countryName, countryIndex) {
     cases.innerHTML = "Total Cases: " + "<span class='orange-text'>" + covidData.cases[countryIndex].toLocaleString() + "</span>"
 
     let casesToday = document.getElementById('today-cases')
-    casesToday.innerHTML = "Cases Today: " + "<span class='orange-text'>" + covidData.todayCases[countryIndex].toLocaleString() + " &#x1f879;" + "</span>"
+    casesToday.innerHTML = "Cases Today: " + "<span class='orange-text'>" +  " + " + covidData.todayCases[countryIndex].toLocaleString() + "</span>"
 
     let deaths = document.getElementById('deaths')
     deaths.innerHTML = "Total Deceased: " + "<span class='negative-data'>" + covidData.deaths[countryIndex].toLocaleString() + "</span>"
 
     let deathsToday = document.getElementById('today-deaths')
-    deathsToday.innerHTML = "Deceased Today: " + "<span class='negative-data'>" + covidData.todayDeaths[countryIndex].toLocaleString() + " &#x1f879;" + "</span>"
+    deathsToday.innerHTML = "Deceased Today: " + "<span class='negative-data'>" +  " + " + covidData.todayDeaths[countryIndex].toLocaleString() +  "</span>"
 
     let recovered = document.getElementById('recovered')
     recovered.innerHTML = "Total Recovered: " + "<span class='positive-data'>" + covidData.recovered[countryIndex].toLocaleString() + "</span>"
@@ -312,7 +311,6 @@ let chart2;
 function createComparisonBarGraph(countryNameOne, countryNameTwo, countryIndexOne, countryIndexTwo) {
     let selectedCountryOne = covidData.countries[countryIndexOne]
     let casesPerOneMillionChartOne = covidData.casesPerOneMillion[countryIndexOne]
-    console.log(casesPerOneMillionChartOne)
 
     let selectedCountryTwo = covidData.countries[countryIndexTwo]
     let casesPerOneMillionChartTwo = covidData.casesPerOneMillion[countryIndexTwo]
