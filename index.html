@@ -21,7 +21,7 @@
     </header>
 
     <main class='row '>
-        <section class='card chart-card col s12 m4 l3 grey lighten-5 news-container'>
+        <section class='card news-container col s12 m3 l3 xl3 grey lighten-5'>
             <h5 id='news-source'><i class="far fa-newspaper"></i> Current News</h5>
 
             <article id='one' class='card articles'>
@@ -62,58 +62,52 @@
                 <a class="twitter-timeline" data-lang="en" data-height="1200" data-theme="light" href="https://twitter.com/LarryA_14/lists/covid-19-tracker?ref_src=twsrc%5Etfw">A Twitter List by LarryA_14</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </article> -->
         </section>
-        <section class='col s12 m8 l7 section contents'>
-            <div>
+        <section class='col s12 m7 l7 xl6 contents'>
 
-                <div class="row">
+            <div class="row">
 
-                    <div class="card col s10 statistics">
-                        <div class=" black-text">
-                            <h5 class='stats-header'> Current Data</h5>
-                        </div>
-                        <div class="card-content white-text">
-
-                            <!-- List of Countries Selector -->
-                            <select id="countries" class="browser-default dropdown">
-                                <option value="" disabled selected>Choose a Country</option>
-                            </select>
-                        </div>
-                        <div class='card-action center-align'>
-                            <!-- Country Data -->
-                            <div id="country-data"></div>
-                            <div class="row">
-                                <div class="col s4 indent" id='country'></div>
-                                <div class="col s4 indent" id='cases'></div>
-                                <div class="col s4 indent" id='cases-per-million'></div>
-                            </div>
-                            <div class="row">
-                                <div class="col s4 indent" id='deaths'></div>
-                                <div class="col s4 indent" id='today-cases'></div>
-                                <div class="col s4 indent" id='active'></div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col s4 indent" id='today-deaths'></div>
-                                <div class="col s4 indent" id='recovered'></div>
-                                <div class="col s4 indent" id='critical'></div>
-                            </div>
-                        </div>
-
+                <div class="card col s12 statistics">
+                    <div class=" black-text">
+                        <h5 class='stats-header'> Current Data</h5>
                     </div>
+                    <div class="card-content white-text">
+
+                        <!-- List of Countries Selector -->
+                        <select id="countries" class="browser-default dropdown">
+                            <option value="" disabled selected>Choose a Country</option>
+                        </select>
+                    </div>
+                    <div class='card-action center-align'>
+                        <!-- Country Data -->
+                        <div id="country-data"></div>
+                        <div class="row">
+                            <div class="col s4 indent" id='country'></div>
+                            <div class="col s4 indent" id='cases'></div>
+                            <div class="col s4 indent" id='cases-per-million'></div>
+                        </div>
+                        <div class="row">
+                            <div class="col s4 indent" id='deaths'></div>
+                            <div class="col s4 indent" id='today-cases'></div>
+                            <div class="col s4 indent" id='active'></div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col s4 indent" id='today-deaths'></div>
+                            <div class="col s4 indent" id='recovered'></div>
+                            <div class="col s4 indent" id='critical'></div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-            </div>
-            <!-- <div class="divider valign-wrapper"></div> -->
-
             <div class='row'>
-                <div class="card chart-card col s10">
+                <div class="card graphs col s12">
                     <!-- All Graph -->
-                    <canvas class="col s12 chart" id="myChart"></canvas>
+                    <canvas class="col s8 chart" id="myChart"></canvas>
                 </div>
             </div>
             <div class='row'>
-                <div class="card chart-card col s10">
+                <div class="card graphs col s12">
                     <div class=" black-text">
                         <h5 class='stats-header'>Cases per Million</h5>
                     </div>
@@ -140,27 +134,26 @@
                     </div>
 
                     <!-- Comparison Graphs -->
-                    <canvas class="col s12 chart" id="myChart2"></canvas>
+                    <canvas class="col s8 chart" id="myChart2"></canvas>
                 </div>
             </div>
-
-            <!--Added IMAGE SLIDE WITH HEALTH INFO-->
+            <!--IMAGE SLIDE WITH HEALTH INFO-->
             <div class='row'>
-                <div class="col s10 card chart-card ">
-            
+                <div class="card graphs col s12">
+
                     <div class="slider">
                         <ul class="slides">
                             <li>
-                                <img src="resources/covideSlideImage.png"> <!-- random image -->
-                                <div class="caption center-align">
-                                </div>
+                                <img class="responsive-img" src="resources/covideSlideImage.png">
+                                <!-- <div class="caption center-align">
+                                </div> -->
                             </li>
                             <li>
-                                <img src="resources/covid19-distancing.jpg"> <!-- random image -->
-                               
+                                <img class="responsive-img" src="resources/covid19-distancing.jpg">
+
                             </li>
                             <li>
-                                <img src="resources/covidsymtoms.png"> <!-- random image -->
+                                <img class="responsive-img" src="resources/covidsymtoms.png">
                             </li>
                         </ul>
                     </div>
@@ -170,30 +163,45 @@
     </main>
 
     <!--Footer with links to our githubs and repo-->
-    <footer class="page-footer blue-grey lighten-1">
+    <footer class="page-footer blue-grey lighten-1 covid-footer">
         <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">Covid-19 Tracker 2020</h5>
-              <p class="grey-text text-lighten-4">A tool to help visualize information related to Covid-19 pandamic.</p>
+            <div class="row">
+                <div class="col l5 s12">
+                    <h5 class="white-text">Covid-19 Tracker 1.0</h5>
+                    <p class="grey-text text-lighten-4">A tool that provides the most useful information related to the
+                        Covid-19 pandemic.</p><br>
+                    <p class="grey-text text-lighten-4">© 2020 Copyright</p>
+                </div>
+
+                <div class='col l2 offset-l1'>
+                    <h5 class="white-text">Sources</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/NovelCOVID/API">Covid-19
+                                Data</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://developer.nytimes.com/">News Source</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div class="col l3 offset-l1 s12">
+                    <h5 class="white-text">Github Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/Lagbana">Larry Agbana</a></li>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/dustinirving">Dustin Irving</a>
+                        </li>
+                        <li><a class="grey-text text-lighten-3" href="https://github.com/K4c3y">Kacey Churchill</a></li>
+                        <br>
+                        <li><a class="grey-text text-lighten-3"
+                                href="https://github.com/Lagbana/covid19-tracker">Project Repository</a></li>
+                    </ul>
+                </div>
+
             </div>
-            <div class="col l4 offset-l2 s12">
-              <h5 class="white-text">Github Links</h5>
-              <ul>
-                <li><a class="grey-text text-lighten-3" href="https://github.com/Lagbana">Larry  Agbana</a></li>
-                <li><a class="grey-text text-lighten-3" href="https://github.com/dustinirving">Dustin Irving</a></li>
-                <li><a class="grey-text text-lighten-3" href="https://github.com/K4c3y">Kacey Churchill</a></li>
-                <li><a class="grey-text text-lighten-3" href="https://github.com/Lagbana/covid19-tracker">Repository</a></li>
-              </ul>
-            </div>
-          </div>
+
         </div>
-        <div class="footer-copyright">
-            <div class="container center">
-            © 2020 Copyright
-            </div>
-          </div>
-      </footer>
+
+    </footer>
 
 
 
@@ -218,8 +226,8 @@
     <script>
         //script for image slide
         $(document).ready(function () {
-                $('.slider').slider();
-            });
+            $('.slider').slider();
+        });
     </script>
 
 </body>
