@@ -24,7 +24,15 @@ https://lagbana.github.io/covid19-tracker/
 
 
 ## Demo
-- Coming Soon
+
+#### Country search
+![search-demo](/resources/search.gif)
+
+#### Country comparison
+![comparison-demo](/resources/compare.gif)
+
+#### Curated news
+![News-demo](/resources/news.gif)
 
 
 ## Api Sources
